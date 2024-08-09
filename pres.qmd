@@ -1,0 +1,614 @@
+---
+# title: "Identificación de falseamiento ENUSC"
+# author: "Marzo 2024"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    # footer: <https://quarto.org>
+---
+
+#
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+<!---
+ <img src="imagenes/logo_portada2.png" style="width: 20%"/>  
+--->
+
+<img src="imagenes/logo_portada2.png" width="20%"/>  
+
+
+[**Imágenes Satelitales**]{.big-par .center-justified}
+[**Para Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Agosto 2024**]{.big-par .center-justified}   
+
+
+## [Contenidos]{.big-par}  
+
+<!-- ::: {.incremental} -->
+
+- Motivación
+
+- Lenguaje 🔁 Visión Computacional 
+
+- Visión Computacional 🔁 Imágenes Satelitales
+
+- Imágenes satelitales 🔁 INE (Futuro)
+
+- Conclusión
+
+
+
+## [Motivación]{.big-par}
+
+::: {.incremental .medium-par}
+- La combinación de imágenes satelitales y machine learning (ML) tiene el potencial para abordar desafíos globales como la estimación de condiciones socioeconómicas y medio-ambientales en una región dada.
+- Como equipo, tenemos la oportunidad / responsabilidad de apoyar en la generación de estadísticas basadas en resultados de encuestas INE...
+  - En muchos casos estos resultados están restringidos en el espacio y tiempo...
+  - Haciendo uso de imágenes satelitales y ML, podemos intentar generalizar estos resultados, especialmente en regiones en que son escasos.
+  - Ejemplo de aplicación: potenciar modelos basados en *Small Are Estimation* (SAE) con observaciones de percepción remota.
+- Existe limitada infraestructura y capacidad técnica para que analistas entrenen múltiples modelos ML con datos de imágenes satelitales, que se ajusten a cada tarea a resolver.
+  - Esto puede ser mejorado dando la posibilidad de entrenar pequeños modelos que escalen eficientemente en sus predicciones... 
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.incremental .medium-par}
+- Soluciones basadas en *autoregressive language modeling* en GPT y *masked autoencoding* en BERT: remueven una porción de los datos (texto) y aprenden a predecir el contenido removido.
+  - Estos métodos han permitido entrenar hoy modelos NLP generalizables con 100M+ parámetros.
+:::
+
+. . .
+
+::: {.center}
+
+![](imagenes/papers/Radford_etal_2018_fig_01.png){width="60%"}
+[(Radford et al., 2018. GPT-1)]{.center .small-par}
+
+![](imagenes/papers/Devlin_etal_2019_fig_01.png){width="60%"}
+[(Devlin et al., 2019. BERT)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.incremental .medium-par}
+- **Qué diferencia al lenguage de la visión computacional?**
+  - En visión, CNNs han dominado en las últimas décadas, pero el gap de arquitectura se ha cerrado con la introducción de *Vision Transformers (ViT)* (Dosovitskiy et al.,2021).
+  - ViT: Modelo cercanamente basado en el Transformer original (Vaswani et al., 2017).
+    - Imagen es dividida en segmentos de tamaño fijo, que se asocian a una secuencia de embeddings posicionales que es pasada al Transformer.
+    - Segmentos son tratados como tokens (palabras) en NLP.
+    - Entrenamiento en grandes datasets  (14M-300M imágenes) supera a resultados obtenidos previamente con modelos basados en CNNs.
+:::
+
+. . .
+
+:::: {layout-ncol=2}
+
+::: fragment
+
+[<img src="imagenes/papers/Dosovitskiy_etal_2021_title.png" width="90%"/>]{.center} 
+
+:::
+
+::: fragment
+
+[<img src="imagenes/papers/Dosovitskiy_etal_2021_citing.png" width="90%"/>]{.center} 
+
+:::
+
+::::
+
+. . .
+
+::: {.center}
+
+![](imagenes/papers/Dosovitskiy_etal_2021_fig_01.png){width="70%"}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.incremental .medium-par}
+- **Qué diferencia al lenguage de la visión computacional?**
+  - Densidad de información: entrenar un modelo para predecir sólo pocas palabras faltantes parece inducir un entendimiento sofisticado del lenguaje (?).
+  - En cambio, imágenes tienen alta redundancia espacial: segmentos faltantes pueden reconstruirse desde segmentos vecinos sin necesidad de entendimiento global.
+  - Solución: **enmascarar una gran porción de segmentos aleatorios, forzando entendimiento holístico de la imagen.**
+:::
+
+. . .
+
+::: {.center}
+
+![](imagenes/papers/He_etal_2022_title.png){width="50%"}
+
+![](imagenes/papers/He_etal_2022_citing.png){width="60%"}
+
+:::
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.incremental .medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual:
+  - Encoder + decoder. 
+:::
+
+. . .
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_00.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- 1. Se divide input data en segmentos (*patches*), análogos a a tokens en NLP.
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_01.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- 2. Segmentos se projectan linealmente a un espacio de embeddings, removiendo aleatoriamente una porción significativa de tokens (ej: 75%).
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_02.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- 3. Tokens no removidos son pasados a través del encoder.
+  - Encoder es un ViT, pero aplicado sólo a tokens no enmascarados. 
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_03.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- 4. Token removidos son enmascarados, para indicar al modelo qué fue removido del input.
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_04.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- 5. Conjunto completo de tokens es pasado a través del decoder, que intenta reconstruir el input.
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_05.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.medium-par}
+- Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
+- En este proceso se entrena encoder y decoder, pero sólo se mantiene el encoder para hacer inferencias en tareas *downstream*.
+:::
+
+::: {.center}
+
+![](imagenes/papers/mae/mae_06.png){width="50%"}
+
+[(He et al., 2022)]{.center .small-par}
+
+:::
+
+
+
+
+## [Lenguaje 🔁 Visión Computacional]{.big-par}
+
+::: {.incremental .medium-par}
+- Ejemplos en datasets ImageNet y COCO.
+  - Imagen enmascarada (izquierda), reconstrucción con MAE (centro) y original (derecha).
+:::
+
+. . .
+
+::: {.r-stack fragment-index=2 .center}
+
+![](imagenes/papers/He_etal_2022_fig_02.png){.fragment .fade-in-then-out width="80%"}
+
+![](imagenes/papers/He_etal_2022_fig_03.png){.fragment .fade-in-then-out width="80%"}
+
+:::
+
+[(He et al., 2022)]{.center .small-par}
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales]{.big-par}
+
+::: {.incremental .medium-par}
+- **P**retrained **R**emote **S**ensing **T**ransf**o**rmer: **Presto**.
+:::
+
+. . .
+
+::: {.center}
+
+![](imagenes/papers/papers_arrow/papers_arrow.png){width="90%"}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- Modelo basado en *self-supervised masked autoencoding*: encoder-decoder (He et al., 2022).
+:::
+
+::: {.center}
+![](imagenes/papers/presto_mae/presto_mae_00.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- Permite ingestar series de tiempo nivel de pixel desde múltiple productos y sensores de percepción remota.
+:::
+
+::: {.center}
+![](imagenes/papers/presto_mae/presto_mae_01.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- Series de tiempo son enmascaradas aleatoriamente y modelo es entrenado para reconstruir las series originales.
+:::
+
+::: {.center}
+![](imagenes/papers/presto_mae/presto_mae_02.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- Encoder (f) embebe la parte del input no enmascarada.
+:::
+
+::: {.center}
+![](imagenes/papers/presto_mae/presto_mae_03.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- Decoder (g) intenta reconstruir la parte enmascarada.
+:::
+
+::: {.center}
+![](imagenes/papers/presto_mae/presto_mae_04.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+<!-- ::: {.incremental .medium-par}
+- **Presto:** ...
+::: -->
+
+<!-- . . . -->
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_fig_02.png){width="80%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- Una vez entrenado, sólo se usa output del encoder.
+  - Encoder puede usarse como *feature extractor* o en *fine-tuning*.
+  - Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con diferentes sensores como input y con diverso número de *timesteps*.
+  - Predicciones son robustas a *missing data*...
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Datos de entrenamiento:** dataset representativo globalmente (21.5M pixel samples, resolución de 10m por pixel).
+  - Series de tiempo a nivel de pixel para 12 meses (sampleados desde 2 años en 2020-2021); 1 timestep por mes.
+  - Múltiples set exportados desde Google Earth Engine.
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_fig_06.png){width="60%"}
+![](imagenes/papers/Tseng_etal_2024_datasets.png){width="60%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Encoding y tokenización:**
+  - Series de tiempo son transformadas en tokens, c/u representado por un embedding.
+    - Por cada timestamp, se agrupan variables del input según tipo de sensor, resolución espacial y parte del espectro electromagnético (ej: bandas S1 forman un grupo).
+    - Cada token es una transformación lineal de un grupo de canales del input. 
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_channel_groups.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Encoding y tokenización:**
+  - Se quiere comunicar al modelo características propias de imágenes satelitales: **localización de pixeles, timestamp, grupo de canales**.
+  - Se agregan encodings a los embeddings, que contienen una concatenación de:
+    - la ubicación de cada pixel en la imagen,
+    - timestamp (mes),
+    - grupo de canales de cada variable.
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_encodings.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Enmascaramiento:** clave para la performance de Presto en inputs incompletos (timesteps y/o canales faltantes).
+  - Al enmascarar se incentiva que el modelo aprenda representaciones que funcionen con subconjuntos de bandas o timesteps.
+  - En cada instancia de entrenamiento, se usó un sampleo aleatorio basado en múltiples estrategias de enmascaramiento:
+    - Aleatorio (1), canales-grupos (2), timesteps contiguos (3), timesteps no contiguos (4).
+:::
+
+<!-- . . . -->
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_masking_techniques.png){width="50%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Experimentos:** a partir del encoder-decoder entrenado, se descartó el decoder y se pasó el output del encoder a un modelo downstream.
+  - Se evaluaron diferentes modelos para: 
+    - **Feature extraction:** regresión lineal o logística (PrestoR), random forest (PrestoRF).
+    - **Fine-tuning:** PrestoFT.
+  - En diferentes tareas, basadas en **series de tiempo, imágenes, imágenes + series de tiempo**.
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_table_01.png){width="70%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Tareas basadas en series de tiempo**:
+  - **Crop type segmentation:** clasificación de pixel binaria de: maíz (Kenya), café (Brazil), *cropland* (Togo).
+  - **Fuel moisture:** regresión para calcular *live fuel moisture content in Western U.S.*
+  - **Florecimiento de algas:** mide severidad de florecimiento cyanobacterial algal en diferentes partes de U.S.
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_fig_03.png){width="60%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Tareas basadas en en imágenes**:
+  - **TreeSatAI:** The TreeSatAI dataset consists of detecting the presence of one or more tree species (out of 20 possible species) in forestry images in Germany.
+  - **EuroSAT:** The EuroSAT dataset classifies Sentinel-2 multispectral images in Europe with one of 10 landcover classes.
+:::
+
+. . .
+
+::: {.center}
+![](imagenes/papers/Tseng_etal_2024_fig_04.png){width="60%"}
+![](imagenes/papers/Tseng_etal_2024_fig_05.png){width="60%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.incremental .medium-par}
+- **Tareas basadas en en imágenes + series de tiempo**:
+  - **S2-Agri100:** The S2-Agri dataset classifies crop types in agricultural parcels.
+  - This dataset consists of 24 timesteps at 10 to 30 day intervals (compared to Presto’s pre-training data, which consists of 12-month timeseries). 
+    - Presto remained performant on this dataset, achieving comparable results with SITS-Former despite having 6X fewer parameters. 
+    - This shows that Presto can ingest timeseries at different temporal resolutions and at varying intervals.
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
+
+::: {.medium-par}
+- **Presto: Reproducibilidad**
+- [Github repo](https://github.com/nasaharvest/presto) + [Jupyter notebook](https://github.com/nasaharvest/presto/blob/main/downstream_task_demo.ipynb): ejemplo de cómo aplicar Presto a nueva tarea.
+- [Presentación youtube](https://www.youtube.com/watch?v=H2mHNaI3oNQ)
+:::
+
+::: {.center}
+![](imagenes/papers/presto_github_01.png){width="60%"}
+[(Tseng et al., 2024)]{.center .small-par}
+:::
+
+
+
+## [Imágenes satelitales | Esquema futuro posible]{.big-par}
+
+::: {.medium-par}
+- TODO: REMOVE THIS SLIDE
+:::
+
+
+```{mermaid}
+flowchart TD
+    L11[Dagster: GEE] & L12[Etiquetas tarea: SAE, MMV, etc] --> L2[Presto: encoder]
+    L2 --> L3[Dependencia local o regional?]
+    L3 -- local ---> L41[Fine Tuning]
+    L41 --> L51[Ej: SAE]
+    L3 -- regional ---> L42[Feature extraction]
+    L42 --> L52[Ej: MMV]
+```
+
+
+
+## [Imágenes satelitales 🔁 INE (Futuro)]{.big-par}
+
+::: {.r-stack fragment-index=2 .center}
+
+![](imagenes/workflow/workflow_00.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_01a.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_01b.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_01c.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_02a.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_03a.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_04.png){.fragment .fade-in-then-out width="90%"}
+
+![](imagenes/workflow/workflow_05.png){.fragment .fade-in-then-out width="90%"}
+
+:::
+
+
+
+## [Conclusión]{.big-par}
+
+::: {.incremental .medium-par}
+- ...
+:::
+
+
+
+#
+
+[<img src="imagenes/logo_portada2.png" width="20%"/>]{.center}
+
+[**Imágenes Satelitales**]{.big-par .center-justified}
+[**Para Ciencia de Datos**]{.medium-par.center-justified}
+
+[**Agosto 2024**]{.big-par .center-justified}
+
+
+[]{.linea-superior} 
+[]{.linea-inferior} 
+
+
+
