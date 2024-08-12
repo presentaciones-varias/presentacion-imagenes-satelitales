@@ -761,86 +761,70 @@
 <ul>
 <li class="fragment"><strong>Tareas basadas en series de tiempo</strong>:
 <ul>
-<li class="fragment"><strong>Crop type segmentation:</strong> clasificación de pixel binaria de: maíz (Kenya), café (Brazil), <em>cropland</em> (Togo).</li>
-<li class="fragment"><strong>Fuel moisture:</strong> regresión para calcular <em>live fuel moisture content in Western U.S.</em></li>
-<li class="fragment"><strong>Florecimiento de algas:</strong> mide severidad de florecimiento cyanobacterial algal en diferentes partes de U.S.</li>
+<li class="fragment"><strong>Crop type segmentation:</strong> clasificación de pixel binaria de: <br> maíz (Kenya), café (Brazil), terreno de cultivo (Togo).</li>
 </ul></li>
 </ul>
 </div>
-<div class="fragment">
-<div class="center">
-<p><img data-src="imagenes/papers/Tseng_etal_2024_fig_03.png" style="width:60.0%"> <span class="center small-par">(Tseng et al., 2024)</span></p>
+<!-- . . . -->
+<div class="r-stack center" data-fragment-index="2">
+<p><img data-src="imagenes/papers/presto_downstream_tasks/presto_downstream_task_01.png" class="fragment fade-in-then-out" style="width:65.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_table_02.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_fig_03.png" class="fragment fade-in-then-out" style="width:80.0%"></p>
 </div>
-</div>
+<p><span class="center small-par">(Tseng et al., 2024)</span></p>
 </section>
 <section id="visión-computacional-imágenes-satelitales-presto-13" class="slide level2">
 <h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
 <div class="medium-par">
 <ul>
-<li class="fragment"><strong>Tareas basadas en en imágenes</strong>:
+<li class="fragment"><strong>Tareas basadas en series de tiempo</strong>: regresión
+<ul>
+<li class="fragment"><strong>Fuel moisture:</strong> nivel de humedad del combustible vivo (contenido de agua en vegetación) en EEUU (Oeste).</li>
+<li class="fragment"><strong>Algae blooms:</strong> severidad de florecimiento de cianobacterias (algas verde-azuladas) en diferentes partes de EEUU.</li>
+</ul></li>
+</ul>
+</div>
+<!-- . . . -->
+<div class="r-stack center" data-fragment-index="2">
+<p><img data-src="imagenes/papers/presto_downstream_tasks/presto_downstream_task_02.png" class="fragment fade-in-then-out" style="width:65.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_table_03.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
+</div>
+<p><span class="center small-par">(Tseng et al., 2024)</span></p>
+</section>
+<section id="visión-computacional-imágenes-satelitales-presto-14" class="slide level2">
+<h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
+<div class="medium-par">
+<ul>
+<li class="fragment"><strong>Tareas basadas en imágenes</strong>:
 <ul>
 <li class="fragment"><strong>TreeSatAI:</strong> The TreeSatAI dataset consists of detecting the presence of one or more tree species (out of 20 possible species) in forestry images in Germany.</li>
 <li class="fragment"><strong>EuroSAT:</strong> The EuroSAT dataset classifies Sentinel-2 multispectral images in Europe with one of 10 landcover classes.</li>
 </ul></li>
 </ul>
 </div>
-<div class="fragment">
-<div class="center">
-<p><img data-src="imagenes/papers/Tseng_etal_2024_fig_04.png" style="width:60.0%"> <img data-src="imagenes/papers/Tseng_etal_2024_fig_05.png" style="width:60.0%"> <span class="center small-par">(Tseng et al., 2024)</span></p>
+<!-- . . . -->
+<div class="r-stack center" data-fragment-index="2">
+<p><img data-src="imagenes/papers/presto_downstream_tasks/presto_downstream_task_03.png" class="fragment fade-in-then-out" style="width:65.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_fig_04.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_table_04.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_fig_05.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
+<p><img data-src="imagenes/papers/Tseng_etal_2024_table_05.png" class="fragment fade-in-then-out" style="width:70.0%"></p>
 </div>
-</div>
-</section>
-<section id="visión-computacional-imágenes-satelitales-presto-14" class="slide level2">
-<h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
-<div class="medium-par">
-<ul>
-<li class="fragment"><strong>Tareas basadas en en imágenes + series de tiempo</strong>:
-<ul>
-<li class="fragment"><strong>S2-Agri100:</strong> The S2-Agri dataset classifies crop types in agricultural parcels.</li>
-<li class="fragment">This dataset consists of 24 timesteps at 10 to 30 day intervals (compared to Presto’s pre-training data, which consists of 12-month timeseries).
-<ul>
-<li class="fragment">Presto remained performant on this dataset, achieving comparable results with SITS-Former despite having 6X fewer parameters.</li>
-<li class="fragment">This shows that Presto can ingest timeseries at different temporal resolutions and at varying intervals.</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
+<p><span class="center small-par">(Tseng et al., 2024)</span></p>
 </section>
 <section id="visión-computacional-imágenes-satelitales-presto-15" class="slide level2">
 <h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
 <div class="medium-par">
 <ul>
-<li><strong>Presto: Reproducibilidad</strong></li>
+<li><strong>Reproducibilidad</strong>
+<ul>
 <li><a href="https://github.com/nasaharvest/presto">Github repo</a> + <a href="https://github.com/nasaharvest/presto/blob/main/downstream_task_demo.ipynb">Jupyter notebook</a>: ejemplo de cómo aplicar Presto a nueva tarea.</li>
 <li><a href="https://www.youtube.com/watch?v=H2mHNaI3oNQ">Presentación youtube</a></li>
+</ul></li>
 </ul>
 </div>
 <div class="center">
 <p><img data-src="imagenes/papers/presto_github_01.png" style="width:60.0%"> <span class="center small-par">(Tseng et al., 2024)</span></p>
-</div>
-</section>
-<section id="imágenes-satelitales-esquema-futuro-posible" class="slide level2">
-<h2><span class="big-par">Imágenes satelitales | Esquema futuro posible</span></h2>
-<div class="medium-par">
-<ul>
-<li>TODO: REMOVE THIS SLIDE</li>
-</ul>
-</div>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    L11[Dagster: GEE] &amp; L12[Etiquetas tarea: SAE, MMV, etc] --&gt; L2[Presto: encoder]
-    L2 --&gt; L3[Dependencia local o regional?]
-    L3 -- local ---&gt; L41[Fine Tuning]
-    L41 --&gt; L51[Ej: SAE]
-    L3 -- regional ---&gt; L42[Feature extraction]
-    L42 --&gt; L52[Ej: MMV]
-</pre>
-</div>
-</div>
-</div>
 </div>
 </section>
 <section id="imágenes-satelitales-ine-futuro" class="slide level2">
@@ -862,6 +846,65 @@
 <ul>
 <li class="fragment">…</li>
 </ul>
+</div>
+</section>
+<section id="extra" class="slide level2">
+<h2><span class="big-par">Extra</span></h2>
+</section>
+<section id="visión-computacional-imágenes-satelitales-presto-16" class="slide level2">
+<h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
+<div class="medium-par">
+<ul>
+<li class="fragment"><strong>Tareas basadas en imágenes + series de tiempo</strong>:
+<ul>
+<li class="fragment"><strong>S2-Agri100:</strong> El dataset S2-Agri clasifica tipos de cultivo crop en parcelas agrícolas.</li>
+<li class="fragment">Consiste de 24 timesteps en intervalos de 10-30 días (comparado con Presto, que fue entrenado en series de tiempo de 12 meses).</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="center">
+<p><img data-src="imagenes/papers/presto_downstream_tasks/presto_downstream_task_04.png" style="width:70.0%"> <span class="center small-par">(Tseng et al., 2024)</span></p>
+</div>
+</div>
+</section>
+<section id="visión-computacional-imágenes-satelitales-presto-17" class="slide level2">
+<h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Presto</span></h2>
+<div class="medium-par">
+<ul>
+<li class="fragment"><strong>Tareas basadas en imágenes + series de tiempo</strong>:
+<ul>
+<li class="fragment"><strong>S2-Agri100:</strong> El dataset S2-Agri clasifica tipos de cultivo crop en parcelas agrícolas.</li>
+<li class="fragment">Presto logra resultados comparables a modelo SITS-Former, a pesar de tener 6x menos parámetros.
+<ul>
+<li class="fragment">Esto demuestra que Presto puede recibir series de tiempo con variada resolución y a diferentes intervalos temporales.</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="center">
+<p><img data-src="imagenes/papers/Tseng_etal_2024_table_06.png" style="width:70.0%"> <span class="center small-par">(Tseng et al., 2024)</span></p>
+</div>
+</div>
+</section>
+<section id="imágenes-satelitales-ine-futuro-1" class="slide level2">
+<h2><span class="big-par">Imágenes satelitales 🔁 INE (Futuro)</span></h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    L11[Dagster: GEE] &amp; L12[Etiquetas tarea: SAE, MMV, etc] --&gt; L2[Presto: encoder]
+    L2 --&gt; L3[Dependencia local o regional?]
+    L3 -- local ---&gt; L41[Fine Tuning]
+    L41 --&gt; L51[Ej: SAE]
+    L3 -- regional ---&gt; L42[Feature extraction]
+    L42 --&gt; L52[Ej: MMV]
+</pre>
+</div>
+</div>
+</div>
 </div>
 </section></section>
 <section id="section-1" class="title-slide slide level1 center">
