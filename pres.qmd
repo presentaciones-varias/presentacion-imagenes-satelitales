@@ -405,7 +405,7 @@ format:
 ::: {.incremental .medium-par}
 - Una vez entrenado, sólo se usa output del encoder.
   - **Encoder puede usarse como *feature extractor* o en *fine-tuning*.**
-  - Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con **diferentes sensores como input y con diverso número de *timesteps***.
+  - Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con **input desde diferentes sensores y con diverso número de *timesteps***.
   <!-- - Predicciones son robustas a *missing data*... -->
 :::
 
@@ -614,17 +614,6 @@ Presto no es el único **Modelos Fundacional** propuestos para imágenes satelit
 
 ## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
 
-Presto no es el único **Modelos Fundacional** propuestos para imágenes satelitales:
-
-::: {.center}
-![](imagenes/papers/Rolf_etal_2021_fig_01.png){width="100%"}
-[(A generalizable and accessible approach to machine learning with global satellite imagery. Rolf et al., 2021)]{.center .small-par}
-:::
-
-
-
-## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
-
 ::: {.center}
 ![](imagenes/papers/Jakubik_etal_2023_news.png){width="70%"}
 ![](imagenes/papers/Jakubik_etal_2023_fig_01.png){width="70%"}
@@ -661,15 +650,15 @@ Presto no es el único **Modelos Fundacional** propuestos para imágenes satelit
 ## [Conclusión]{.big-par}
 
 ::: {.incremental .medium-par}
-- Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para enriquecer el cálculo de indicadores estadísticos, superando los **desafíos** planteados:
-  - *El volumen existente de **datos satelitales etiquetados es mucho menor que de datos no-etiquetados**.*
-    - Podemos utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction.
+- [Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para enriquecer el cálculo de indicadores estadísticos, superando los **desafíos** planteados:]{style="color:gray;"}
+  - [El volumen existente de **datos satelitales etiquetados es mucho menor que de datos no-etiquetados**.]{style="color:gray;"}
+    - Podemos **utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction**.
     - Estos modelos capturan el comportamiento emergente del sistema modelado a partir de datos no-etiquetados y tienden a escalar mejor para tareas downstream que modelos específicos entrenados con datos etiquetados.
-  - *En general, por diseño, **resultados de encuestas son limitados geográfica y temporalmente**.*
-    - Predicciones obtenidas desde el fine-tuning o feature extraction de FMs pueden generalizar estos resultados, especialmente a regiones o intervalos de tiempo en que son escasos.
-  - *Existe **limitada infraestructura y capacidad técnica** para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.*
+  - [En general, por diseño, **resultados de encuestas son limitados geográfica y temporalmente**.]{style="color:gray;"}
+    - Predicciones obtenidas desde el **fine-tuning o feature extraction de FMs pueden generalizar estos resultados**, especialmente a regiones o intervalos de tiempo en que son escasos.
+  - [Existe **limitada infraestructura y capacidad técnica** para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.]{style="color:gray;"}
     - El fine-tuning o feature extraction de FMs permite entrenar pequeños modelos, con datos etiquetados relevantes para cada tarea.
-    - Este entrenamiento no requiere una gran infraestructura ni datos satelitales, por lo que eventualmente podría ser realizado por analistas.
+    - Este **entrenamiento no requiere una gran infraestructura ni datos satelitales, por lo que eventualmente podría ser realizado por analistas**.
       - Ejemplo: calcular predicciones de algún indicador a un dado nivel geográfico, que sirva de insumo para modelos basados en *Small Are Estimation* (SAE).
 :::
 

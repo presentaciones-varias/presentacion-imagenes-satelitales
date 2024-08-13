@@ -669,7 +669,7 @@
 <li class="fragment">Una vez entrenado, sólo se usa output del encoder.
 <ul>
 <li class="fragment"><strong>Encoder puede usarse como <em>feature extractor</em> o en <em>fine-tuning</em>.</strong></li>
-<li class="fragment">Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con <strong>diferentes sensores como input y con diverso número de <em>timesteps</em></strong>. <!-- - Predicciones son robustas a *missing data*... --></li>
+<li class="fragment">Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con <strong>input desde diferentes sensores y con diverso número de <em>timesteps</em></strong>. <!-- - Predicciones son robustas a *missing data*... --></li>
 </ul></li>
 </ul>
 </div>
@@ -861,13 +861,6 @@
 </section>
 <section id="visión-computacional-imágenes-satelitales-alternativas-2" class="slide level2">
 <h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Alternativas</span></h2>
-<p>Presto no es el único <strong>Modelos Fundacional</strong> propuestos para imágenes satelitales:</p>
-<div class="center">
-<p><img data-src="imagenes/papers/Rolf_etal_2021_fig_01.png" style="width:100.0%"> <span class="center small-par">(A generalizable and accessible approach to machine learning with global satellite imagery. Rolf et al., 2021)</span></p>
-</div>
-</section>
-<section id="visión-computacional-imágenes-satelitales-alternativas-3" class="slide level2">
-<h2><span class="big-par">Visión Computacional 🔁 Imágenes Satelitales | Alternativas</span></h2>
 <div class="center">
 <p><img data-src="imagenes/papers/Jakubik_etal_2023_news.png" style="width:70.0%"> <img data-src="imagenes/papers/Jakubik_etal_2023_fig_01.png" style="width:70.0%"> <img data-src="imagenes/papers/Jakubik_etal_2023_fig_03.png" style="width:70.0%"> <span class="center small-par">(Foundation Models for Generalist Geospatial Artificial Intelligence. Jakubik et al., 2023)</span></p>
 </div>
@@ -889,21 +882,21 @@
 <h2><span class="big-par">Conclusión</span></h2>
 <div class="medium-par">
 <ul>
-<li class="fragment">Podemos aprovechar el potencial que tiene la <strong>combinación de imágenes satelitales y machine learning (ML)</strong> para enriquecer el cálculo de indicadores estadísticos, superando los <strong>desafíos</strong> planteados:
+<li class="fragment"><span style="color:gray;">Podemos aprovechar el potencial que tiene la <strong>combinación de imágenes satelitales y machine learning (ML)</strong> para enriquecer el cálculo de indicadores estadísticos, superando los <strong>desafíos</strong> planteados:</span>
 <ul>
-<li class="fragment"><em>El volumen existente de <strong>datos satelitales etiquetados es mucho menor que de datos no-etiquetados</strong>.</em>
+<li class="fragment"><span style="color:gray;">El volumen existente de <strong>datos satelitales etiquetados es mucho menor que de datos no-etiquetados</strong>.</span>
 <ul>
-<li class="fragment">Podemos utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction.</li>
+<li class="fragment">Podemos <strong>utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction</strong>.</li>
 <li class="fragment">Estos modelos capturan el comportamiento emergente del sistema modelado a partir de datos no-etiquetados y tienden a escalar mejor para tareas downstream que modelos específicos entrenados con datos etiquetados.</li>
 </ul></li>
-<li class="fragment"><em>En general, por diseño, <strong>resultados de encuestas son limitados geográfica y temporalmente</strong>.</em>
+<li class="fragment"><span style="color:gray;">En general, por diseño, <strong>resultados de encuestas son limitados geográfica y temporalmente</strong>.</span>
 <ul>
-<li class="fragment">Predicciones obtenidas desde el fine-tuning o feature extraction de FMs pueden generalizar estos resultados, especialmente a regiones o intervalos de tiempo en que son escasos.</li>
+<li class="fragment">Predicciones obtenidas desde el <strong>fine-tuning o feature extraction de FMs pueden generalizar estos resultados</strong>, especialmente a regiones o intervalos de tiempo en que son escasos.</li>
 </ul></li>
-<li class="fragment"><em>Existe <strong>limitada infraestructura y capacidad técnica</strong> para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.</em>
+<li class="fragment"><span style="color:gray;">Existe <strong>limitada infraestructura y capacidad técnica</strong> para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.</span>
 <ul>
 <li class="fragment">El fine-tuning o feature extraction de FMs permite entrenar pequeños modelos, con datos etiquetados relevantes para cada tarea.</li>
-<li class="fragment">Este entrenamiento no requiere una gran infraestructura ni datos satelitales, por lo que eventualmente podría ser realizado por analistas.
+<li class="fragment">Este <strong>entrenamiento no requiere una gran infraestructura ni datos satelitales, por lo que eventualmente podría ser realizado por analistas</strong>.
 <ul>
 <li class="fragment">Ejemplo: calcular predicciones de algún indicador a un dado nivel geográfico, que sirva de insumo para modelos basados en <em>Small Are Estimation</em> (SAE).</li>
 </ul></li>
