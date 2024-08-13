@@ -503,8 +503,8 @@ format:
 ::: {.incremental .medium-par}
 - **Experimentos:** a partir del encoder-decoder entrenado, **se descartó el decoder y se pasó el output del encoder a un modelo downstream.**
   - Se evaluaron diferentes modelos para: 
-    - **Feature extraction:** regresión lineal o logística (PrestoR), random forest (PrestoRF).
-    - **Fine-tuning:** PrestoFT.
+    - **Feature extraction:** regresión lineal o logística (PrestoR) y random forest (PrestoRF) entrenados en embeddings de Presto.
+    - **Fine-tuning:** PrestoFT. Encoder seguido de una transformación lineal de los tokens, re-entrenado con datos relevantes para cada tarea.
   - En diferentes tareas, basadas en **series de tiempo, imágenes, imágenes + series de tiempo**.
 :::
 

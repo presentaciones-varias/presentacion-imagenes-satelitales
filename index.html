@@ -769,8 +769,8 @@
 <ul>
 <li class="fragment">Se evaluaron diferentes modelos para:
 <ul>
-<li class="fragment"><strong>Feature extraction:</strong> regresión lineal o logística (PrestoR), random forest (PrestoRF).</li>
-<li class="fragment"><strong>Fine-tuning:</strong> PrestoFT.</li>
+<li class="fragment"><strong>Feature extraction:</strong> regresión lineal o logística (PrestoR) y random forest (PrestoRF) entrenados en embeddings de Presto.</li>
+<li class="fragment"><strong>Fine-tuning:</strong> PrestoFT. Encoder seguido de una transformación lineal de los tokens, re-entrenado con datos relevantes para cada tarea.</li>
 </ul></li>
 <li class="fragment">En diferentes tareas, basadas en <strong>series de tiempo, imágenes, imágenes + series de tiempo</strong>.</li>
 </ul></li>
