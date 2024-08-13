@@ -26,7 +26,7 @@ format:
 
 
 [**Imágenes Satelitales**]{.big-par .center-justified}
-[**Para Ciencia de Datos**]{.medium-par.center-justified}
+[***Para* Ciencia de Datos**]{.medium-par.center-justified}
 
 [**Agosto 2024**]{.big-par .center-justified}   
 
@@ -41,7 +41,7 @@ format:
 
 - Visión Computacional 🔁 Imágenes Satelitales
 
-- Imágenes satelitales 🔁 INE (Futuro)
+- Imágenes satelitales ⏩ INE (Futuro)
 
 - Conclusión
 
@@ -50,13 +50,52 @@ format:
 ## [Motivación]{.big-par}
 
 ::: {.incremental .medium-par}
-- La combinación de imágenes satelitales y machine learning (ML) tiene el potencial para abordar desafíos globales como la estimación de condiciones socioeconómicas y medio-ambientales en una región dada.
-- Como equipo, tenemos la oportunidad / responsabilidad de apoyar en la generación de estadísticas basadas en resultados de encuestas INE...
-  - En muchos casos estos resultados están restringidos en el espacio y tiempo...
-  - Haciendo uso de imágenes satelitales y ML, podemos intentar generalizar estos resultados, especialmente en regiones en que son escasos.
-  - Ejemplo de aplicación: potenciar modelos basados en *Small Are Estimation* (SAE) con observaciones de percepción remota.
-- Existe limitada infraestructura y capacidad técnica para que analistas entrenen múltiples modelos ML con datos de imágenes satelitales, que se ajusten a cada tarea a resolver.
-  - Esto puede ser mejorado dando la posibilidad de entrenar pequeños modelos que escalen eficientemente en sus predicciones... 
+<!-- - La combinación de imágenes satelitales y machine learning (ML) tiene el potencial para abordar problemas asociados a los objetivos de desarrollo sostenible (ODS) planteados por la ONU en su Agenda 2030: 
+  - Estimación de condiciones socioeconómicas y medio-ambientales en una región dada, etc. -->
+- INE, a través de encuestas sociales, participa en el **levantamiento de indicadores estadísticos** que miden entre otras cosas el avance del país en los objetivos de desarrollo sostenible (ODS) planteados por Naciones Unidas en su Agenda 2030.
+  - Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para abordar problemas asociados al cálculo de estos indicadores:
+    - Por ejemplo: estimación de condiciones socioeconómicas y medio-ambientales en una región dada.
+:::
+
+:::: {.columns}
+
+::: {.column width="55%"}
+[<img src="imagenes/data/sdgs_un.png" width="90%"/>]{.center} 
+:::
+
+::: {.column width="35%"}
+[<img src="imagenes/data/data_surveys_02.png" width="100%"/>]{.center} 
+:::
+
+::::
+
+
+
+## [Motivación]{.big-par}
+
+::: {.incremental .medium-par}
+- Sin embargo, hacer uso de machine learning + imágenes satelitales para calcular indicadores estadísticos presenta algunos **desafíos**:
+  - El volumen existente de **datos satelitales etiquetados es mucho menor que de datos no-etiquetados**. Y esta tendencia se agudiza en el tiempo.
+  [<img src="imagenes/papers/Zhu_etal_2024_fig_02a.png" width="50%"/>]{.center} 
+  - En general, por diseño, **resultados de encuestas son limitados geográfica y temporalmente**.
+  - Existe **limitada infraestructura y capacidad técnica** para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.
+:::
+
+
+
+## [Motivación]{.big-par}
+
+::: {.medium-par}
+- Sin embargo, hacer uso de machine learning + imágenes satelitales para calcular indicadores estadísticos presenta algunos **desafíos**:
+  - Cómo podemos superar estos desafíos?
+:::
+
+. . .
+
+::: {.center}
+
+![](imagenes/data/data_attention_01.png){width="50%"}
+
 :::
 
 
@@ -64,7 +103,7 @@ format:
 ## [Lenguaje 🔁 Visión Computacional]{.big-par}
 
 ::: {.incremental .medium-par}
-- Soluciones basadas en *autoregressive language modeling* en GPT y *masked autoencoding* en BERT: remueven una porción de los datos (texto) y aprenden a predecir el contenido removido.
+- Soluciones basadas en *autoregressive language modeling* en GPT y ***masked autoencoding*** en BERT: remueven una porción de los datos (texto) y aprenden a predecir el contenido removido.
   - Estos métodos han permitido entrenar hoy modelos NLP generalizables con 100M+ parámetros.
 :::
 
@@ -86,32 +125,24 @@ format:
 
 ::: {.incremental .medium-par}
 - **Qué diferencia al lenguage de la visión computacional?**
-  - En visión, CNNs han dominado en las últimas décadas, pero el gap de arquitectura se ha cerrado con la introducción de *Vision Transformers (ViT)* (Dosovitskiy et al.,2021).
+  - En visión, CNNs han dominado en las últimas décadas, pero el **gap de arquitectura se ha cerrado con la introducción de *Vision Transformers (ViT)*** (Dosovitskiy et al.,2021).
   - ViT: Modelo cercanamente basado en el Transformer original (Vaswani et al., 2017).
     - Imagen es dividida en segmentos de tamaño fijo, que se asocian a una secuencia de embeddings posicionales que es pasada al Transformer.
     - Segmentos son tratados como tokens (palabras) en NLP.
     - Entrenamiento en grandes datasets  (14M-300M imágenes) supera a resultados obtenidos previamente con modelos basados en CNNs.
 :::
 
-. . .
+:::: {.columns}
 
-:::: {layout-ncol=2}
-
-::: fragment
-
+::: {.column width="45%"}
 [<img src="imagenes/papers/Dosovitskiy_etal_2021_title.png" width="90%"/>]{.center} 
-
 :::
 
-::: fragment
-
-[<img src="imagenes/papers/Dosovitskiy_etal_2021_citing.png" width="90%"/>]{.center} 
-
+::: {.column width="45%"}
+[<img src="imagenes/papers/Dosovitskiy_etal_2021_citing.png" width="100%"/>]{.center} 
 :::
 
 ::::
-
-. . .
 
 ::: {.center}
 
@@ -126,7 +157,7 @@ format:
 ::: {.incremental .medium-par}
 - **Qué diferencia al lenguage de la visión computacional?**
   - Densidad de información: entrenar un modelo para predecir sólo pocas palabras faltantes parece inducir un entendimiento sofisticado del lenguaje (?).
-  - En cambio, imágenes tienen alta redundancia espacial: segmentos faltantes pueden reconstruirse desde segmentos vecinos sin necesidad de entendimiento global.
+  - En cambio, **imágenes tienen alta redundancia espacial**: segmentos faltantes pueden reconstruirse desde segmentos vecinos sin necesidad de entendimiento global.
   - Solución: **enmascarar una gran porción de segmentos aleatorios, forzando entendimiento holístico de la imagen.**
 :::
 
@@ -199,7 +230,7 @@ format:
 ::: {.medium-par}
 - Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
 - 3. Tokens no removidos son pasados a través del encoder.
-  - Encoder es un ViT, pero aplicado sólo a tokens no enmascarados. 
+  - **Encoder es un ViT, pero aplicado sólo a tokens no enmascarados.** 
 :::
 
 ::: {.center}
@@ -250,7 +281,7 @@ format:
 
 ::: {.medium-par}
 - Así surge un simple, efectivo y escalable *masked autoencoder* (MAE) para aprendizaje visual.
-- En este proceso se entrena encoder y decoder, pero sólo se mantiene el encoder para hacer inferencias en tareas *downstream*.
+- **En este proceso se entrena encoder y decoder, pero sólo se mantiene el encoder para hacer inferencias en tareas *downstream*.**
 :::
 
 ::: {.center}
@@ -357,25 +388,15 @@ format:
 - Decoder (g) intenta reconstruir la parte enmascarada.
 :::
 
-::: {.center}
-![](imagenes/papers/presto_mae/presto_mae_04.png){width="70%"}
-[(Tseng et al., 2024)]{.center .small-par}
+::: {.r-stack fragment-index=2 .center}
+
+![](imagenes/papers/presto_mae/presto_mae_04.png){.fragment .fade-in-then-out width="70%"}
+
+![](imagenes/papers/Tseng_etal_2024_fig_02.png){.fragment .fade-in-then-out width="80%"}
+
 :::
 
-
-
-## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
-
-<!-- ::: {.incremental .medium-par}
-- **Presto:** ...
-::: -->
-
-<!-- . . . -->
-
-::: {.center}
-![](imagenes/papers/Tseng_etal_2024_fig_02.png){width="80%"}
 [(Tseng et al., 2024)]{.center .small-par}
-:::
 
 
 
@@ -383,9 +404,9 @@ format:
 
 ::: {.incremental .medium-par}
 - Una vez entrenado, sólo se usa output del encoder.
-  - Encoder puede usarse como *feature extractor* o en *fine-tuning*.
-  - Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con diferentes sensores como input y con diverso número de *timesteps*.
-  - Predicciones son robustas a *missing data*...
+  - **Encoder puede usarse como *feature extractor* o en *fine-tuning*.**
+  - Las representaciones aprendidas pueden ser adaptadas a una amplia variedad de tareas, con **diferentes sensores como input y con diverso número de *timesteps***.
+  <!-- - Predicciones son robustas a *missing data*... -->
 :::
 
 
@@ -412,7 +433,7 @@ format:
 
 ::: {.incremental .medium-par}
 - **Encoding y tokenización:**
-  - Series de tiempo son transformadas en tokens, c/u representado por un embedding.
+  - **Series de tiempo son transformadas en tokens, c/u representado por un embedding.**
     - Por cada timestamp, se agrupan variables del input según tipo de sensor, resolución espacial y parte del espectro electromagnético (ej: bandas S1 forman un grupo).
     - Cada token es una transformación lineal de un grupo de canales del input. 
 :::
@@ -450,7 +471,7 @@ format:
 
 ::: {.incremental .medium-par}
 - **Enmascaramiento:** clave para la performance de Presto en inputs incompletos (timesteps y/o canales faltantes).
-  - Al enmascarar se incentiva que el modelo aprenda representaciones que funcionen con subconjuntos de bandas o timesteps.
+  - Al enmascarar **se incentiva que el modelo aprenda representaciones que funcionen con subconjuntos de bandas o timesteps.**
   - En cada instancia de entrenamiento, se usó un sampleo aleatorio basado en múltiples estrategias de enmascaramiento:
     - Aleatorio (1), canales-grupos (2), timesteps contiguos (3), timesteps no contiguos (4).
 :::
@@ -467,7 +488,7 @@ format:
 ## [Visión Computacional 🔁 Imágenes Satelitales | Presto]{.big-par}
 
 ::: {.incremental .medium-par}
-- **Experimentos:** a partir del encoder-decoder entrenado, se descartó el decoder y se pasó el output del encoder a un modelo downstream.
+- **Experimentos:** a partir del encoder-decoder entrenado, **se descartó el decoder y se pasó el output del encoder a un modelo downstream.**
   - Se evaluaron diferentes modelos para: 
     - **Feature extraction:** regresión lineal o logística (PrestoR), random forest (PrestoRF).
     - **Fine-tuning:** PrestoFT.
@@ -477,7 +498,7 @@ format:
 . . .
 
 ::: {.center}
-![](imagenes/papers/Tseng_etal_2024_table_01.png){width="70%"}
+![](imagenes/papers/presto_downstream_tasks/presto_downstream_task_00.png){width="60%"}
 [(Tseng et al., 2024)]{.center .small-par}
 :::
 
@@ -570,7 +591,50 @@ format:
 
 
 
-## [Imágenes satelitales 🔁 INE (Futuro)]{.big-par}
+## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
+
+Presto no es el único **Modelos Fundacional** propuestos para imágenes satelitales:
+
+::: {.center}
+![](imagenes/data/nasa_foundation_models.png){.fragment .fade-in-then-out width="85%"}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
+
+Presto no es el único **Modelos Fundacional** propuestos para imágenes satelitales:
+
+::: {.center}
+![](imagenes/papers/Rolf_etal_2021_fig_01.png){width="100%"}
+[(A generalizable and accessible approach to machine learning with global satellite imagery. Rolf et al., 2021)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
+
+Presto no es el único **Modelos Fundacional** propuestos para imágenes satelitales:
+
+::: {.center}
+![](imagenes/papers/Rolf_etal_2021_fig_01.png){width="100%"}
+[(A generalizable and accessible approach to machine learning with global satellite imagery. Rolf et al., 2021)]{.center .small-par}
+:::
+
+
+
+## [Visión Computacional 🔁 Imágenes Satelitales | Alternativas]{.big-par}
+
+::: {.center}
+![](imagenes/papers/Jakubik_etal_2023_news.png){width="70%"}
+![](imagenes/papers/Jakubik_etal_2023_fig_01.png){width="70%"}
+![](imagenes/papers/Jakubik_etal_2023_fig_03.png){width="70%"}
+[(Foundation Models for Generalist Geospatial Artificial Intelligence. Jakubik et al., 2023)]{.center .small-par}
+:::
+
+
+
+## [Imágenes satelitales ⏩ INE (Futuro)]{.big-par}
 
 ::: {.r-stack fragment-index=2 .center}
 
@@ -597,7 +661,16 @@ format:
 ## [Conclusión]{.big-par}
 
 ::: {.incremental .medium-par}
-- ...
+- Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para enriquecer el cálculo de indicadores estadísticos, superando los **desafíos** planteados:
+  - *El volumen existente de **datos satelitales etiquetados es mucho menor que de datos no-etiquetados**.*
+    - Podemos utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction.
+    - Estos modelos capturan el comportamiento emergente del sistema modelado a partir de datos no-etiquetados y tienden a escalar mejor para tareas downstream que modelos específicos entrenados con datos etiquetados.
+  - *En general, por diseño, **resultados de encuestas son limitados geográfica y temporalmente**.*
+    - Predicciones obtenidas desde el fine-tuning o feature extraction de FMs pueden generalizar estos resultados, especialmente a regiones o intervalos de tiempo en que son escasos.
+  - *Existe **limitada infraestructura y capacidad técnica** para que analistas entrenen modelos ML que usen datos de imágenes satelitales, personalizados para cada tarea a resolver.*
+    - El fine-tuning o feature extraction de FMs permite entrenar pequeños modelos, con datos etiquetados relevantes para cada tarea.
+    - Este entrenamiento no requiere una gran infraestructura ni datos satelitales, por lo que eventualmente podría ser realizado por analistas.
+      - Ejemplo: calcular predicciones de algún indicador a un dado nivel geográfico, que sirva de insumo para modelos basados en *Small Are Estimation* (SAE).
 :::
 
 
@@ -641,10 +714,7 @@ format:
 
 
 
-
-
-
-## [Imágenes satelitales 🔁 INE (Futuro)]{.big-par}
+## [Imágenes satelitales ⏩ INE (Futuro)]{.big-par}
 
 ```{mermaid}
 flowchart TD
@@ -662,7 +732,7 @@ flowchart TD
 [<img src="imagenes/logo_portada2.png" width="20%"/>]{.center}
 
 [**Imágenes Satelitales**]{.big-par .center-justified}
-[**Para Ciencia de Datos**]{.medium-par.center-justified}
+[***Para* Ciencia de Datos**]{.medium-par.center-justified}
 
 [**Agosto 2024**]{.big-par .center-justified}
 
