@@ -650,7 +650,7 @@ Presto no es el único **Modelos Fundacional** propuestos para imágenes satelit
 ## [Conclusión]{.big-par}
 
 ::: {.incremental .medium-par}
-- [Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para enriquecer el cálculo de indicadores estadísticos, superando los **desafíos** planteados:]{style="color:gray;"}
+- [Podemos aprovechar el potencial que tiene la **combinación de imágenes satelitales y machine learning (ML)** para enriquecer el cálculo de indicadores estadísticos, superando los **desafíos** planteados:]{style="color:black;"}
   - [El volumen existente de **datos satelitales etiquetados es mucho menor que de datos no-etiquetados**.]{style="color:gray;"}
     - Podemos **utilizar modelos fundacionales (FM) pre-entrenados (Presto, etc), ya sea para fine-tuning o feature extraction**.
     - Estos modelos capturan el comportamiento emergente del sistema modelado a partir de datos no-etiquetados y tienden a escalar mejor para tareas downstream que modelos específicos entrenados con datos etiquetados.
