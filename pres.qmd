@@ -92,11 +92,24 @@ format:
 
 . . .
 
-::: {.center}
+:::: {.columns}
+
+::: {.column width="45%"}
+[<img src="imagenes/papers/Vaswani_etal_2017_citing.png" width="90%"/>]{.center} 
+[<img src="imagenes/data/data_attention_01.png" width="90%"/>]{.center} 
+:::
+
+::: {.column width="45%"}
+[<img src="imagenes/papers/Vaswani_etal_2017_fig_01.png" width="70%"/>]{.center} 
+:::
+
+::::
+
+<!-- ::: {.center}
 
 ![](imagenes/data/data_attention_01.png){width="50%"}
 
-:::
+::: -->
 
 
 
